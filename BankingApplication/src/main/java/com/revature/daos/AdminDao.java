@@ -9,5 +9,6 @@ public interface AdminDao {
 	void createAdmin(Admin a);
 	void getUsers();
 	void getUserTransactionHistory(User u);
+	Admin findByUsernameAndPassword(String username, String password);
 
 }

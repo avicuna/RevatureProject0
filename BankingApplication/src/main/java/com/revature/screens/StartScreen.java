@@ -24,8 +24,7 @@ public class StartScreen implements Screen {
 		case "2":
 			return new RegisterUserScreen();
 		case "3":
-			System.out.println("Not yet implemented!");
-			break;
+			return new AdminLoginScreen();
 		case "4":
 			return new RegisterAdminScreen();
 		}

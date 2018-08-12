@@ -4,17 +4,18 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.revature.beans.User;
-import com.revature.daos.UserDao;
+import com.revature.beans.Admin;
+import com.revature.daos.AdminDao;
 
-public class UserLoginScreen implements Screen {
-
+public class AdminLoginScreen implements Screen {
 	private Scanner scan = new Scanner(System.in);
-	private UserDao ud = UserDao.currentUserDao;
+	private AdminDao ad = AdminDao.currentAdminDao;
 	private Logger log = Logger.getRootLogger();
+
 
 	@Override
 	public Screen start() {
+		// TODO Auto-generated method stub
 		System.out.println("Enter Username: ");
 		String username = scan.nextLine();
 		log.trace("username = " + username);
@@ -23,10 +24,10 @@ public class UserLoginScreen implements Screen {
 		String password = scan.nextLine();
 		
 		log.debug("received users credentials");
-		User currentUser = ud.findByUsernameAndPassword(username, password);
-		if (currentUser != null) {
+		Admin currentAdmin = ad.findByUsernameAndPassword(username, password);
+		if (currentAdmin != null) {
 			log.info("user succefully logged in");
-			return new HomeScreen(currentUser);
+			return new AdminHomeScreen(currentAdmin);
 		}
 
 		System.out.println("unable to login");
