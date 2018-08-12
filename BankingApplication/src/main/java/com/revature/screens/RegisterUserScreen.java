@@ -33,7 +33,7 @@ public class RegisterUserScreen implements Screen {
 			System.out.println("Invalid number");
 		}
 		
-		return new LoginScreen();
+		return new UserLoginScreen();
 	}
 
 }

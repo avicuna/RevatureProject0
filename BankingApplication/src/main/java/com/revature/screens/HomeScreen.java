@@ -30,7 +30,7 @@ public class HomeScreen implements Screen {
 		case "2":
 			return new WithdrawScreen(current);
 		case "3":
-			System.out.println("\n" + "You're balance is " + u.getBalance());
+			System.out.println("\n" + "You're balance is " + current.getBalance());
 			break;
 		case "4":
 			System.out.println(current.getHistory());
