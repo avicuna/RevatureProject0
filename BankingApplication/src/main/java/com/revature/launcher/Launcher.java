@@ -14,7 +14,7 @@ public class Launcher {
 		log.warn("warn log");
 		log.error("error log");
 		log.fatal("fatal log");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		System.out.println("Welcome to MemeTrust, we make memes even danker.");
 		Screen s = new LoginScreen();
 		while(true) {
