@@ -7,8 +7,7 @@ public interface AdminDao {
 	public static final AdminDao currentAdminDao = AdminSerializer.as;
 	
 	void createAdmin(Admin a);
-	void getUsers();
-	void getUserTransactionHistory(User u);
 	Admin findByUsernameAndPassword(String username, String password);
-
+	void viewAllUsers();
+	void viewUserTransactionHistory(String username);
 }

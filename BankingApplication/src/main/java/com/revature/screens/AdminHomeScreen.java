@@ -24,14 +24,17 @@ public class AdminHomeScreen implements Screen {
 		System.out.println("Please choose from the following options: ");
 		System.out.println("Enter 1 to view users");
 		System.out.println("Enter 2 to get user transaction info");
+		System.out.println("Enter 3 to logout");
 		String selection = scan.nextLine();
 		switch (selection) {
 		case "1":
-			System.out.println("Sorry! View users not yet implemented.");
+			ad.viewAllUsers();
 			break;
 		case "2":
 			System.out.println("Sorry! Get user transaction info not yet implemented.");
 			break;
+		case "3":
+			return new AdminLoginScreen();
 		default:
 			break;
 		}

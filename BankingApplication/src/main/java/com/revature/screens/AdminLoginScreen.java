@@ -23,10 +23,10 @@ public class AdminLoginScreen implements Screen {
 		System.out.println("Enter Password: ");
 		String password = scan.nextLine();
 		
-		log.debug("received users credentials");
+		log.debug("received admins credentials");
 		Admin currentAdmin = ad.findByUsernameAndPassword(username, password);
 		if (currentAdmin != null) {
-			log.info("user succefully logged in");
+			log.info("admin succefully logged in");
 			return new AdminHomeScreen(currentAdmin);
 		}
 

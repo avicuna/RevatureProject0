@@ -17,7 +17,6 @@ public class AdminSerializer implements AdminDao {
 	private Logger log = Logger.getRootLogger();
 	public static final AdminSerializer as = new AdminSerializer();
 	private static Admin currentAdmin;
-	
 	public void createAdmin(Admin a) {
 		log.debug("creating admin");
 		if (a == null) {
@@ -97,14 +96,51 @@ public class AdminSerializer implements AdminDao {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
-	public void getUsers() {
+	public void viewAllUsers() {
 		// TODO Auto-generated method stub
-		
+		File folder = new File("src/main/resources/users/");
+		File[] listOfFiles = folder.listFiles();
+
+		for (int i = 0; i < listOfFiles.length; i++) {
+			if (listOfFiles[i].isFile()) {
+				System.out.println("File " + listOfFiles[i].getName());
+			} else if (listOfFiles[i].isDirectory()) {
+				System.out.println("Directory " + listOfFiles[i].getName());
+			}
+
+		}
 	}
+
 	@Override
-	public void getUserTransactionHistory(User u) {
+	public void viewUserTransactionHistory(String username) {
 		// TODO Auto-generated method stub
+		User currentUser = null;
+		if (username == null) {
+			return;
+		}
+		try (ObjectInputStream ois = new ObjectInputStream(
+				new FileInputStream("src/main/resources/users/" + username + ".txt"))) {
+
+			currentUser = (User) ois.readObject(); // retrieve the user if it can
+			
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Couldn't find the user!");
+//			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Couldn't find the user!");
+//			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Couldn't find the user!");
+//			e.printStackTrace();
+		}
+		
+		System.out.println(currentUser.getHistory());
 		
 	}
 }
