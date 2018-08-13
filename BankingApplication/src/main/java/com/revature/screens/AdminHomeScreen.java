@@ -31,10 +31,10 @@ public class AdminHomeScreen implements Screen {
 			ad.viewAllUsers();
 			break;
 		case "2":
-			System.out.println("Sorry! Get user transaction info not yet implemented.");
-			break;
+			return new ViewUserHistory(current);
 		case "3":
-			return new AdminLoginScreen();
+			System.out.println("You've been logged out.");
+			return new StartScreen();
 		default:
 			break;
 		}

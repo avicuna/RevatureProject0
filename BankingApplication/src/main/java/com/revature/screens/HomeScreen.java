@@ -23,6 +23,7 @@ public class HomeScreen implements Screen {
 		System.out.println("Enter 2 to withdraw YeetCoin");
 		System.out.println("Enter 3 to view balance");
 		System.out.println("Enter 4 to view transaction history");
+		System.out.println("Enter 5 to logout");
 		String selection = scan.nextLine();
 		switch (selection) {
 		case "1":
@@ -35,6 +36,9 @@ public class HomeScreen implements Screen {
 		case "4":
 			System.out.println(current.getHistory());
 			break;
+		case "5":
+			System.out.println("You've been logged out");
+			return new StartScreen();
 		default:
 			break;
 		}
