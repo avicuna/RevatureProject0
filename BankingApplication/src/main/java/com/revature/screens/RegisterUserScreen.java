@@ -9,12 +9,20 @@ public class RegisterUserScreen implements Screen {
 
 	private Scanner scan = new Scanner(System.in);
 	private UserDao ud = UserDao.currentUserDao;
+	private String username;
+	private String password;
 
 	@Override
 	public Screen start() {
 		User u = new User();
 		System.out.println("Enter new username");
-		u.setUsername(scan.nextLine());
+		username = scan.nextLine();
+		User currentUser = ud.findUsername(username);
+		if (currentUser != null) {
+			System.out.println("This username already exists. Try another one");
+			return new StartScreen();
+		}
+		u.setUsername(username);
 		System.out.println("Enter password");
 		u.setPassword(scan.nextLine());
 		System.out.println("Enter first name");

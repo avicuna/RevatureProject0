@@ -31,7 +31,7 @@ public class AdminHomeScreen implements Screen {
 			ad.viewAllUsers();
 			break;
 		case "2":
-			return new ViewUserHistory(current);
+			return new ViewUsersHistory(current);
 		case "3":
 			System.out.println("You've been logged out.");
 			return new StartScreen();

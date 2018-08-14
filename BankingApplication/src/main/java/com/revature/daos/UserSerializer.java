@@ -17,6 +17,7 @@ public class UserSerializer implements UserDao {
 	private Logger log = Logger.getRootLogger();
 	public static final UserSerializer us = new UserSerializer();
 	private static User currentUser;
+	private static User existingUser;
 	
 	private UserSerializer() {
 		super();
@@ -86,6 +87,34 @@ public class UserSerializer implements UserDao {
 		return null;
 	}
 	
+	@Override
+	public User findUsername(String username) {
+		// TODO Auto-generated method stub
+		if (username == null) {
+			return null;
+		}
+		try (ObjectInputStream ois = new ObjectInputStream(
+				new FileInputStream("src/main/resources/users/" + username + ".txt"))) {
+
+			existingUser = (User) ois.readObject(); // retrieve the user if it can
+			// verify that the password matches
+			return existingUser;
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public static User getCurrentUser() {
 		return currentUser;
 	}
@@ -148,5 +177,6 @@ public class UserSerializer implements UserDao {
 		// TODO Auto-generated method stub
 		return currentUser.getHistory();
 	}
+
 
 }

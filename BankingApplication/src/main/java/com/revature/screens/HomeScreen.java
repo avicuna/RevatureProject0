@@ -34,7 +34,7 @@ public class HomeScreen implements Screen {
 			System.out.println("\n" + "You're balance is " + current.getBalance());
 			break;
 		case "4":
-			System.out.println(current.getHistory());
+			System.out.println("\n" + current.getHistory());
 			break;
 		case "5":
 			System.out.println("You've been logged out");

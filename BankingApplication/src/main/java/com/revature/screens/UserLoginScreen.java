@@ -29,8 +29,8 @@ public class UserLoginScreen implements Screen {
 			return new HomeScreen(currentUser);
 		}
 
-		System.out.println("unable to login");
-		return this;
+		System.out.println("Unable to login. Please try again.");
+		return new StartScreen();
 	}
 
 }
