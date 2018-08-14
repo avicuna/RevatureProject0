@@ -23,22 +23,22 @@ public class UserSerializer implements UserDao {
 	}
 
 	@Override
-	public void createUser(User u) {
+	public boolean createUser(User u) {
 		log.debug("creating user");
 		if (u == null) {
-			return;
+			return false;
 		}
 		File f = new File("src/main/resources/users/" + u.getUsername() + ".txt");
 		System.out.println(f.getName());
 		if (f.exists()) {
-			return;
+			return false;
 		}
 		try {
 			f.createNewFile();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-			return;
+			return false;
 		}
 		try (ObjectOutputStream oos = new ObjectOutputStream(
 				new FileOutputStream("src/main/resources/users/" + u.getUsername() + ".txt"))) {
@@ -52,6 +52,7 @@ public class UserSerializer implements UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return true;
 
 	}
 
@@ -90,7 +91,7 @@ public class UserSerializer implements UserDao {
 	}
 
 	@Override
-	public void updateUser(User u) {
+	public boolean updateUser(User u) {
 		// TODO Auto-generated method stub
 		try (ObjectOutputStream oos = new ObjectOutputStream(
 				new FileOutputStream("src/main/resources/users/" + currentUser.getUsername() + ".txt"))) {
@@ -100,11 +101,13 @@ public class UserSerializer implements UserDao {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
-
+		return true;
 	}
 
 	@Override
@@ -132,8 +135,12 @@ public class UserSerializer implements UserDao {
 	}
 
 	@Override
-	public void addHistory(String newHistory) {
+	public boolean addHistory(String newHistory) {
+		if(newHistory == null) {
+			return false;
+		}
 		currentUser.addHistory(newHistory);
+		return true;
 	}
 
 	@Override
